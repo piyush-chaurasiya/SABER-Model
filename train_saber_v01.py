@@ -11,6 +11,8 @@ from sklearn.metrics import (
     confusion_matrix
 )
 
+import joblib
+
 print("Loading dataset...")
 
 df = pd.read_csv(
@@ -75,3 +77,18 @@ print(confusion_matrix(y_test, predictions))
 
 print("\nClassification Report:")
 print(classification_report(y_test, predictions))
+
+
+# Save Model
+joblib.dump(
+    model,
+    "models/saber_v01.pkl"
+)
+
+# Save Vectorizer
+joblib.dump(
+    vectorizer,
+    "models/tfidf_vectorizer.pkl"
+)
+
+print("\nModel Saved Successfully!")
