@@ -1,9 +1,33 @@
+"""
+
+==========================================
+SABER v0.1 Training Script
+==========================================
+
+Algorithm:
+    Logistic Regression
+
+Vectorizer:
+    TF-IDF
+
+Configuration:
+    max_features = 30000
+    sublinear_tf = True
+
+Purpose:
+    Train the SABER depression detection model and save the trained model along with the TF-IDF vectorizer.
+
+Author:
+    Piyush Chaurasiya
+
+"""
+
 import pandas as pd
 
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+
 
 from sklearn.metrics import (
     accuracy_score,
@@ -24,7 +48,9 @@ print("Dataset Shape:", df.shape)
 X = df["text"]
 y = df["label"]
 
-# Train-Test Split
+# -----------------------------
+# Split Dataset
+# -----------------------------
 
 X_train, X_test, y_train, y_test = train_test_split(
     X,
@@ -36,7 +62,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 print("Creating TF-IDF features...")
 
 vectorizer = TfidfVectorizer(
-    max_features=10000
+    max_features=30000,
+    sublinear_tf=True
+    
 )
 
 X_train_tfidf = vectorizer.fit_transform(
@@ -50,7 +78,8 @@ X_test_tfidf = vectorizer.transform(
 print("Training SABER v0.1...")
 
 model = LogisticRegression(
-    max_iter=1000
+    max_iter=1000,
+    random_state=42
 )
 
 model.fit(
@@ -70,7 +99,7 @@ accuracy = accuracy_score(
 )
 
 print("\nAccuracy:")
-print(round(accuracy * 100, 2), "%")
+print(f"{accuracy * 100:.2f}%")
 
 print("\nConfusion Matrix:")
 print(confusion_matrix(y_test, predictions))

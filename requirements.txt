@@ -1,0 +1,19 @@
+# ==========================================
+# PersonaSense - SABER
+# AI-Based User Behavior Intelligence System
+# ==========================================
+
+# Core Libraries
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Machine Learning
+scikit-learn>=1.5.0
+joblib>=1.4.0
+
+# Notebook Support
+jupyter>=1.0.0
+ipykernel>=6.29.0
+
+# Data Visualization (Future)
+matplotlib>=3.9.0
